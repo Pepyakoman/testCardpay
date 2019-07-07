@@ -1,0 +1,39 @@
+<div class="page-header">
+    <h1>{{title}}</h1>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Клиент</th>
+            <th>Перечень услуг</th>
+            <th>Состояние счета</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of tempClients">
+            <td>{{client.name}}</td>
+            <td>
+            	<table class="table table-striped">
+            		<thead class='sub-table-head'>
+            		    <tr>
+            		        <th>Название</th>
+            		        <th>Количесто</th>
+            		        <th>Цена за 1</th>
+            		        <th>Цена за все</th>
+            		        <th>Задолженность по услуге</th>
+            		    </tr>
+            		</thead>
+            		<tr *ngFor="let service of client.services">
+            			<td>{{service.purchase}}</td>
+            			<td>x{{service.count}}</td>
+            			<td>${{service.price.toFixed(2)}}</td>
+            			<td>${{service.serviceDebt.toFixed(2)}}</td>
+            			<td>${{service.unredeemed.toFixed(2)}}</td>
+            		</tr>
+            	</table>
+        	</td>
+            <td class='client-debt'>${{client.debt.toFixed(2)}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,103 @@
+<div class="container">
+	<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Цена</th>
+                <th>Куплено</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of services" (click)="change($event, item)">
+                <td>{{item.purchase}}</td>
+                <td>${{item.price}}</td>
+                <td><input type="checkbox" [(ngModel)]="item.done" /></td>
+            </tr>
+        </tbody>
+    </table>
+	<div class="row">
+		<div class="col-md-4 order-md-2 mb-4">
+
+			<h4 class="d-flex justify-content-between align-items-center mb-3">
+				<span class="text-muted">Ваши услуги </span>
+				<span class="badge badge-secondary badge-pill">{{totalCount}}</span>
+			</h4>
+
+			<ul class="list-group mb-3" *ngFor="let item of services">
+				<li class="list-group-item d-flex justify-content-between lh-condensed" *ngIf="item.done">
+					<h6 class="my-0">{{item.purchase}}</h6>
+					<span class="text-muted">${{item.price}}</span>
+				</li>
+			</ul>
+
+			<div class="list-group-item d-flex justify-content-between">
+				<span>Всего к оплате (USD)</span>
+				<strong> ${{total}}</strong>
+			</div>
+
+		</div>
+
+	<hr class="mb-4">
+
+	<div class="col-md-8 order-md-1">
+	  <form class="needs-validation" novalidate>
+	    <div class="row">
+	    	<div class="list-group-item d-flex justify-content-between">
+	    		<label for="firstName">Имя</label>
+	    		<input id="firstName" name="firstName" type="text" class="form-control" [(ngModel)]="firstName" required>
+			    <label for="lastName">Фамилия</label>
+			    <input id="lastName" name="lastName" type="text" class="form-control" [(ngModel)]="lastName" required>
+		    </div>
+	    </div>
+
+	    <hr class="mb-4">
+
+	    <h4 class="mb-3">Способ оплаты</h4>
+
+	    <div class="d-block my-3">
+	      <div class="custom-control custom-radio">
+	        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+	        <label class="custom-control-label" for="credit">Кредитная карта</label>
+	      </div>
+	      <div class="custom-control custom-radio">
+	        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+	        <label class="custom-control-label" for="debit">Дебетовая карта</label>
+	      </div>
+	      <div class="custom-control custom-radio">
+	        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+	        <label class="custom-control-label" for="paypal">PayPal</label>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-md-6 mb-3">
+	        <label for="cc-name">Имя</label>
+	        <input type="text" class="form-control" id="cc-name" placeholder="" required>
+	        <small class="text-muted">Полное имя, указанное на карте</small>
+	      </div>
+	      <div class="col-md-6 mb-3">
+	        <label for="cc-number">Номер карты</label>
+	        <input type="text" class="form-control" id="cc-number" placeholder="" required>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-md-3 mb-3">
+	        <label for="cc-expiration">Действительна до</label>
+	        <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+	      </div>
+	      <div class="col-md-3 mb-3">
+	        <label for="cc-cvv">CVV код</label>
+	        <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+	        <small class="text-muted">Трехзначный код на обратной стороне карты</small>
+	      </div>
+	      <div class="col-md-3 mb-3">
+	        <label for="money">Сумма для внесения</label>
+	        <input type="text" class="form-control" id="money" name="money" placeholder="" [(ngModel)]="money" required>
+	      </div>
+	    </div>
+	    <hr class="mb-4">
+	    <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="addClientPay($event)">Продолжить операцию</button>
+	  </form>
+	</div>
+</div>
+
